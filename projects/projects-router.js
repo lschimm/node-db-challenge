@@ -34,7 +34,7 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ message: "code is messed up somewhere. boo" });
   }
 });
-// not working yet
+// works!
 
 router.get("/:id/actions", async (req, res) => {
   const { id } = req.params;

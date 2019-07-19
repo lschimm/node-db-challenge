@@ -43,7 +43,7 @@ Demonstrate your understanding of this week's concepts by answering the followin
    I think foreign key.
 
 1) What do we need in order to have a _many to many_ relationship between two tables.
-   You got me.
+   A third table
 
 ## Project Set Up
 
