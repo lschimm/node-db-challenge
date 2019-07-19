@@ -4,24 +4,28 @@ exports.up = function(knex) {
       tbl.increments();
 
       //needs name, description, status
-      tbl.string("project-name").notNullable();
-      tbl.string("project-description").notNullable();
-      tbl.boolean("project-status").notNullable();
+      tbl
+        .string("projectName")
+        .notNullable()
+        .unique();
+      tbl.string("projectDescription").notNullable();
+      tbl.boolean("projectStatus").notNullable();
     })
     .createTable("actions", tbl => {
       tbl.increments();
       // needs unique id, description, notes, status
+      //hook it up via the project id
       tbl
-        .integer("project-id")
+        .integer("projectId")
         .notNullable()
         .unsigned()
         .references("id")
         .inTable("projects")
         .onDelete("RESTRICT")
         .onUpdate("CASCADE");
-      tbl.string("action-description").notNullable();
-      tbl.string("action-notes").nullable(); /// nullable a thing? double check this
-      tbl.boolean("action-status").notNullable();
+      tbl.string("actionDescription");
+      tbl.string("actionNotes");
+      tbl.boolean("actionStatus");
     });
 };
 
