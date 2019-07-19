@@ -34,7 +34,7 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 1. Explain the difference between `Relational Databases` and `SQL`.
    I thiiiiink relational databases is a more structured way of holding the data
-   SQL is just a programmin glanguage that designs relational databases.
+   SQL is just a programming language that designs relational databases.
 
 1. Why do tables need a `primary key`?
    Just to help with duplications. Each table should at least have one column that uniquely identifies it.
@@ -81,12 +81,12 @@ Feel free to name the tables and fields anything you want. **Add relationships**
 
 ### Tasks
 
-- [ ] Build the database and tables using knex migrations. **Seeding is not needed**.
-- [ ] Build the API with the following endpoints:
+- [x] Build the database and tables using knex migrations. **Seeding is not needed**.
+- [~] Build the API with the following endpoints:
 
-  - [ ] POST for adding projects.
-  - [ ] POST for adding actions.
-  - [ ] GET for retrieving a `project` by its `id` that returns an object with the following structure:
+  - [x] POST for adding projects.
+  - [x] POST for adding actions.
+  - [~] GET for retrieving a `project` by its `id` that returns an object with the following structure:
 
     ```js
     {

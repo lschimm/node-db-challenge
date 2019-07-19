@@ -6,52 +6,18 @@ const db = require("../data/db-config.js");
 // GET retreive actions by its 'id' // double get?
 
 module.exports = {
-  getProject,
-  getProjectById,
-  //   getActions,
-  //   getActionsById,
-  addProject,
-  addActions
+  getProject, //works
+  addProject, //works
+  addAction, //works
+  getProjectById, //works on the solo return; not double get return to bring in the actions connecting via projectId: id
+  getActionsByProjectId //trying D:
 };
-
-// needs testing
 
 function getProject() {
   return db("projects");
 }
 
-//project-id changed to projectId
-// the dash - doesn't work :C
-
-function getProjectById(id) {
-  return db("projects")
-    .where({ id })
-    .first()
-    .then(pro => {
-      if (pro) {
-        //the double get goes here I think. Just repeat above?
-        return db("actions")
-          .where({ projectId: id })
-          .select("id", "actionDescription", "actionNotes", "actionStatus")
-          .then(act => {
-            return { ...project, act };
-          });
-      } else {
-        return null;
-      }
-    });
-}
-
-// TEST THIS ^ I don't know what's going on. lol
-
-function addActions(act) {
-  return db("actions")
-    .insert(act)
-    .then(id => ({ id }))
-    .catch(err => {
-      res.status(500).json(err);
-    });
-}
+//works
 
 function addProject(pro) {
   return db("projects")
@@ -62,6 +28,42 @@ function addProject(pro) {
     });
 }
 
-//might not need these functions
-function addActionById() {}
-function addProjectById() {}
+function addAction(act) {
+  return db("actions")
+    .insert(act)
+    .then(id => ({ id }))
+    .catch(err => {
+      res.status(500).json(err);
+    });
+}
+
+//project-id changed to projectId
+// the dash - doesn't work :C
+
+function getProjectById(id) {
+  return db("projects")
+    .where({ id })
+    .first()
+    .then(projects => {
+      if (projects) {
+        return (
+          db("actions")
+            .where({ projectId: id })
+            //   .select("actionName")
+            .then(actions => {
+              return { ...projects, actions };
+            })
+        );
+        // return projects;
+      } else {
+        return null;
+      } // else {
+      //return something working? please?
+      //}
+    });
+}
+
+function getActionsByProjectId(id) {
+  return db("actions").where({ projectId: id });
+}
+//this should be okay
